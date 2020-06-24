@@ -37,7 +37,14 @@ import timber.log.Timber
  * https://developer.android.com/guide/components/processes-and-threads
  *
  */
+<<<<<<< HEAD
 class DessertTimer(lifecycle: Lifecycle) : LifecycleObserver {
+=======
+class DessertTimer(lifecycle: Lifecycle): LifecycleObserver {
+    init {
+        lifecycle.addObserver(this)
+    }
+>>>>>>> starter-code
 
     // The number of seconds counted since the timer started
     var secondsCount = 0
@@ -49,6 +56,7 @@ class DessertTimer(lifecycle: Lifecycle) : LifecycleObserver {
     private var handler = Handler()
     private lateinit var runnable: Runnable
 
+<<<<<<< HEAD
 
     init {
         // Add this as a lifecycle Observer, which allows for the class to react to changes in this
@@ -56,6 +64,8 @@ class DessertTimer(lifecycle: Lifecycle) : LifecycleObserver {
         lifecycle.addObserver(this)
     }
 
+=======
+>>>>>>> starter-code
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun startTimer() {
         // Create the runnable action, which prints out a log and increments the seconds counter

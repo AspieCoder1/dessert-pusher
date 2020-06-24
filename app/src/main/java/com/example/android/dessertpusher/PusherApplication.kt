@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * Copyright 2018, The Android Open Source Project
  *
@@ -14,13 +15,19 @@
  * limitations under the License.
  */
 
+=======
+>>>>>>> starter-code
 package com.example.android.dessertpusher
 
 import android.app.Application
 import timber.log.Timber
 
+<<<<<<< HEAD
 class PusherApplication : Application() {
 
+=======
+class PusherApplication: Application() {
+>>>>>>> starter-code
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())

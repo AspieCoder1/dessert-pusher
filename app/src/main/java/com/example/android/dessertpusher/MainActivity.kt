@@ -18,6 +18,8 @@ package com.example.android.dessertpusher
 
 import android.content.ActivityNotFoundException
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -27,11 +29,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleObserver
 import com.example.android.dessertpusher.databinding.ActivityMainBinding
 import timber.log.Timber
+<<<<<<< HEAD
 
 /** onSaveInstanceState Bundle Keys **/
 const val KEY_REVENUE = "revenue_key"
 const val KEY_DESSERT_SOLD = "dessert_sold_key"
 const val KEY_TIMER_SECONDS = "timer_seconds_key"
+=======
+>>>>>>> starter-code
 
 class MainActivity : AppCompatActivity(), LifecycleObserver {
 
@@ -70,6 +75,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
     private var currentDessert = allDesserts[0]
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Timber.i("onCreate was called")
         super.onCreate(savedInstanceState)
         Timber.i("onCreate Called")
 
@@ -80,6 +86,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
             onDessertClicked()
         }
 
+<<<<<<< HEAD
         // Setup dessertTimer, passing in the lifecycle
         dessertTimer = DessertTimer(this.lifecycle)
 
@@ -92,6 +99,14 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
             dessertTimer.secondsCount = savedInstanceState.getInt(KEY_TIMER_SECONDS, 0)
             showCurrentDessert()
 
+=======
+        dessertTimer = DessertTimer(this.lifecycle)
+
+        if(savedInstanceState != null) {
+            revenue = savedInstanceState.getInt("key_revenue")
+            dessertsSold = savedInstanceState.getInt("key_desserts_sold")
+            dessertTimer.secondsCount = savedInstanceState.getInt("key_timer_seconds_count")
+>>>>>>> starter-code
         }
 
         // Set the TextViews to the right values
@@ -100,7 +115,44 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
         // Make sure the correct dessert is showing
         binding.dessertButton.setImageResource(currentDessert.imageId)
+
     }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.i("onResume called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Timber.i("onPause called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.i("onDestroy called")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Timber.i("onRestart called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putInt("key_revenue", revenue)
+        outState?.putInt("key_desserts_sold", dessertsSold)
+        outState?.putInt("key_timer_seconds_count", dessertTimer.secondsCount)
+    }
+
 
     /**
      * Updates the score when the dessert is clicked. Possibly shows a new dessert.
